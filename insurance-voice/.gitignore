@@ -1,0 +1,16 @@
+.env
+.env.local
+__pycache__/
+*.py[cod]
+.venv
+venv/
+env/
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# local database
+*.db
+*.db-wal
+*.db-shm

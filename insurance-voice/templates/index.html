@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intake — AI Insurance Voice Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ============ DASHBOARD ============ -->
+  <section class="dash">
+    <header class="topbar">
+      <div class="brand">
+        <div class="mark"></div>
+        <div>
+          <h1>Intake</h1>
+          <p>ai insurance voice agent</p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button class="ghost-btn" id="open-history">History</button>
+        <div class="stat">
+          <div class="num" id="total">0</div>
+          <div class="lbl">total intakes</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="lanes">
+      <div class="lane" style="--hue: var(--auto);">
+        <div class="lane-head">
+          <div class="lane-title"><span class="dot"></span><span>Auto</span></div>
+          <div class="count" id="count-auto">0</div>
+        </div>
+        <div class="lane-body" id="lane-auto">
+          <div class="empty">No auto intakes yet</div>
+        </div>
+      </div>
+
+      <div class="lane" style="--hue: var(--health);">
+        <div class="lane-head">
+          <div class="lane-title"><span class="dot"></span><span>Health</span></div>
+          <div class="count" id="count-health">0</div>
+        </div>
+        <div class="lane-body" id="lane-health">
+          <div class="empty">No health intakes yet</div>
+        </div>
+      </div>
+
+      <div class="lane" style="--hue: var(--life);">
+        <div class="lane-head">
+          <div class="lane-title"><span class="dot"></span><span>Life</span></div>
+          <div class="count" id="count-life">0</div>
+        </div>
+        <div class="lane-body" id="lane-life">
+          <div class="empty">No life intakes yet</div>
+        </div>
+      </div>
+
+      <div class="lane" style="--hue: var(--property);">
+        <div class="lane-head">
+          <div class="lane-title"><span class="dot"></span><span>Property</span></div>
+          <div class="count" id="count-property">0</div>
+        </div>
+        <div class="lane-body" id="lane-property">
+          <div class="empty">No property intakes yet</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-strip" id="review-strip" style="--hue: var(--review);">
+      <h4>Needs review — couldn't be filed automatically</h4>
+      <div class="review-items" id="review-items"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONSOLE ============ -->
+  <aside class="console">
+    <div class="console-head">
+      <h2>Intake console</h2>
+      <span class="state" id="state"><span class="live"></span><span id="state-text">Ready</span></span>
+    </div>
+
+    <div class="wave-wrap">
+      <canvas id="wave"></canvas>
+      <div class="rec-timer" id="rec-timer"><span class="rec-dot"></span><span id="timer-text">00:00</span></div>
+      <div class="wave-hint" id="wave-hint">Press record and speak — it listens until you press Stop</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn primary" id="record">● Record</button>
+      <button class="btn stop" id="stop" disabled>■ Stop</button>
+    </div>
+
+    <div class="upload-row">
+      <input type="file" id="file" accept="audio/*" hidden />
+      <button class="btn" id="pick">Upload audio file</button>
+      <span class="filename" id="filename"></span>
+    </div>
+
+    <div class="toggle">
+      <span>Read summaries aloud</span>
+      <label class="switch">
+        <input type="checkbox" id="speak-toggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="stream">
+      <h3>Live transcript</h3>
+      <div class="log" id="log">
+        <div class="log-empty">Recordings and uploads<br />appear here in real time.</div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- ============ HISTORY MODAL ============ -->
+<div class="modal" id="history-modal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div>
+        <h2>Intake history</h2>
+        <p id="history-sub">Every recorded intake</p>
+      </div>
+      <div class="modal-actions">
+        <button class="ghost-btn danger" id="clear-history">Clear all</button>
+        <button class="ghost-btn" id="close-history">Close</button>
+      </div>
+    </div>
+    <div class="modal-body" id="history-list">
+      <div class="log-empty">No intakes recorded yet.</div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
