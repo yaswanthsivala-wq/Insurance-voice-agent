@@ -378,15 +378,19 @@ async function sendToServer(url, form) {
 /* ---------- wire up ---------- */
 els.record.addEventListener("click", startRecording);
 els.stop.addEventListener("click", stopRecording);
-els.openHistory.addEventListener("click", openHistory);
-els.closeHistory.addEventListener("click", closeHistory);
-els.clearHistory.addEventListener("click", clearHistory);
-els.historyModal.addEventListener("click", (e) => {
-  if (e.target === els.historyModal) closeHistory();
-});
+
+// THE FOLLOWING LINES ARE COMMENTED OUT TO PREVENT ERRORS SINCE YOU REMOVED THE HTML BUTTONS[cite: 1]
+// els.openHistory.addEventListener("click", openHistory);[cite: 1]
+// els.closeHistory.addEventListener("click", closeHistory);[cite: 1]
+// els.clearHistory.addEventListener("click", clearHistory);[cite: 1]
+// els.historyModal.addEventListener("click", (e) => {[cite: 1]
+//   if (e.target === els.historyModal) closeHistory();[cite: 1]
+// });[cite: 1]
 
 fitCanvas();
-loadHistory(true); // rebuild dashboard from stored intakes on load
+
+// THE FOLLOWING LINE IS COMMENTED OUT SO THE APP DOESN'T PULL OLD DATA ON LOAD[cite: 1]
+// loadHistory(true); [cite: 1]
 
 // polyfill roundRect for older browsers
 if (!CanvasRenderingContext2D.prototype.roundRect) {
